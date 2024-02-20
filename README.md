@@ -1,9 +1,6 @@
 # Hi there, I'm Abd Alrhman Aldarra! 👋
 
-### Frameworks and Technologies
-![]([https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLYHk6vuD_jiLQhdh65PprE1SwaJme_pQjd6w_n24yNCYCMOibdUSPCmkxD6IajrOy7WA&usqp=CAU) ![](https://banner2.cleanpng.com/20180420/qcq/kisspng-web-development-responsive-web-design-cascading-st-css-5ada20d85ee519.3835589315242446963887.jpg) ![](URL_to_JavaScript_icon) ![](URL_to_Vue.js_icon) ![](URL_to_React_icon) ![](URL_to_ASP.NET_icon) ![](URL_to_C#_icon) ![](URL_to_Python_icon) ![](URL_to_SQL_icon) ![](URL_to_After_Effects_icon) ![](URL_to_Premiere_Pro_icon](https://www.shutterstock.com/image-vector/vector-collection-web-development-shield-260nw-1757407322.jpg))
 
-## 📚 Current Learning Goals
 
 ## 🎓 Education
 - **Bachelor Degree in Media Science** (Incomplete) - Damascus University
@@ -19,8 +16,9 @@
 - An **internship** to complete my education in my last semester, where I can apply and expand my skills in web development, multimedia design, and digital marketing.
 
 ## 💡 Skills
-- Proficient in **ASP.NET, C#, Python, SQL, After Effects, Premiere Pro, Photoshop**, and **Web Design**.
-- Experienced with **Vue.js, React, HTML, CSS, JavaScript, SASS, Bootstrap, WordPress**, and **Illustrator**.
+- Working with a range of technologies including **ASP.NET, C#, Python, SQL**, and diving into **Web Design** principles.
+- Engaging in creative projects using **Adobe After Effects, Premiere Pro, Photoshop**, and  **Illustrator** for graphic design.
+- Developing web solutions with **Vue.js, React**, and utilizing **HTML, CSS, JavaScript, SASS, Bootstrap**, and **WordPress** for various projects.
 
 ## 📫 How to Reach Me
 - Email: abdalrhmanaldarra@gmail.com
