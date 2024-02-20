@@ -12,8 +12,9 @@
 - **Web Developer** at uBreak WeFix, Odense, Denmark. Developed WooCommerce platform and website.
 - **Film Producer** at IWCS, Kvistgård, Denmark. Worked on animation, design, and production of promotional materials and tutorials.
 
-## 🌱 I'm currently looking for
-- An **internship** to complete my education in my last semester, where I can apply and expand my skills in web development, multimedia design, and digital marketing.
+## 🌱 Seeking Internship Opportunity
+- In search of an **internship** for my final semester, aimed at meeting my academic obligations and extending my proficiency in **web development**. I am eager to find a setting where I can effectively apply and enhance the web development knowledge I've recently acquired through my studies.
+
 
 ## 💡 Skills
 - Working with a range of technologies including **ASP.NET, C#, Python, SQL**, and diving into **Web Design** principles.
