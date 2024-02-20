@@ -1,5 +1,10 @@
 # Hi there, I'm Abd Alrhman Aldarra! 👋
 
+### Frameworks and Technologies
+![](https://www.google.com/search?sca_esv=0f23f44a810f0132&sxsrf=ACQVn0-gI_U83htxZ4Evg20yvQABO8A_mA:1708441617705&q=html+logo&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjnnPj9mLqEAxVuExAIHeJSDK8Q0pQJegQIDBAB&biw=1440&bih=783&dpr=2#imgrc=CMejG3u2-z4qVM&imgdii=LwVmyrVn91EK-M) ![](https://banner2.cleanpng.com/20180420/qcq/kisspng-web-development-responsive-web-design-cascading-st-css-5ada20d85ee519.3835589315242446963887.jpg) ![](URL_to_JavaScript_icon) ![](URL_to_Vue.js_icon) ![](URL_to_React_icon) ![](URL_to_ASP.NET_icon) ![](URL_to_C#_icon) ![](URL_to_Python_icon) ![](URL_to_SQL_icon) ![](URL_to_After_Effects_icon) ![](URL_to_Premiere_Pro_icon)
+
+## 📚 Current Learning Goals
+
 ## 🎓 Education
 - **Bachelor Degree in Media Science** (Incomplete) - Damascus University
 - **Studentereksamen** - VUC FYN, Odense, Denmark
