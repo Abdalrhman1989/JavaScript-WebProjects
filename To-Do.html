@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Task Manager</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .board {
+            display: flex;
+            width: 90%;
+            max-width: 1000px;
+        }
+        .column {
+            flex: 1;
+            margin: 0 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .column header {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #333;
+        }
+        .task {
+            padding: 10px;
+            background-color: #e7e7eb;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .task:hover {
+            background-color: #dedee3;
+        }
+        input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #5cba47;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #4aa836;
+        }
+    </style>
+</head>
+<body>
+    <div class="board">
+        <div class="column" id="todo">
+            <header>To Do</header>
+            <input type="text" id="new-task" placeholder="Enter a new task">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+        <div class="column" id="doing">
+            <header>Doing</header>
+        </div>
+        <div class="column" id="done">
+            <header>Done</header>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const input = document.getElementById('new-task');
+            const taskText = input.value.trim();
+            if (taskText !== '') {
+                createTaskElement(taskText, 'todo');
+                input.value = ''; // Clear the input after adding the task
+            }
+        }
+
+        function createTaskElement(text, columnId) {
+            const task = document.createElement('div');
+            task.className = 'task';
+            task.textContent = text;
+            task.onclick = function () { moveTask(task, columnId); };
+            const column = document.getElementById(columnId);
+            column.appendChild(task);
+        }
+
+        function moveTask(task, currentColumnId) {
+            const nextColumnId = getNextColumnId(currentColumnId);
+            if (nextColumnId) {
+                const nextColumn = document.getElementById(nextColumnId);
+                nextColumn.appendChild(task);
+                task.onclick = function () { moveTask(task, nextColumnId); };
+            }
+        }
+
+        function getNextColumnId(currentColumnId) {
+            switch (currentColumnId) {
+                case 'todo': return 'doing';
+                case 'doing': return 'done';
+                default: return null; // No further movement once in 'done'
+            }
+        }
+    </script>
+</body>
+</html>

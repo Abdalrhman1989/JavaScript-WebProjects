@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Tic-Tac-Toe Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 10px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #e7e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cell:hover {
+            background-color: #dedee3;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cba47;
+            color: white;
+        }
+        button:hover {
+            background-color: #4aa836;
+        }
+        #scoreboard {
+            margin: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tic-Tac-Toe</h2>
+    <div id="scoreboard">Score - X: 0 | O: 0</div>
+    <div class="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+    <button onclick="resetGame()">Reset Game</button>
+
+    <script>
+        let cells = document.querySelectorAll('.cell');
+        let currentPlayer = 'X';
+        let gameState = Array(9).fill('');
+        let scores = JSON.parse(sessionStorage.getItem('scores')) || { X: 0, O: 0 };
+
+        function updateScoreboard() {
+            document.getElementById('scoreboard').textContent = `Score - X: ${scores.X} | O: ${scores.O}`;
+        }
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                if (gameState[index] === '' && !checkWin()) {
+                    gameState[index] = currentPlayer;
+                    this.textContent = currentPlayer;
+                    if (checkWin()) {
+                        alert(`Congratulations! Player ${currentPlayer} wins!`);
+                        scores[currentPlayer]++;
+                        sessionStorage.setItem('scores', JSON.stringify(scores));
+                        updateScoreboard();
+                        resetGame();
+                    }
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            });
+        });
+
+        function checkWin() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            return winPatterns.some(pattern => {
+                return pattern.every(index => gameState[index] === currentPlayer);
+            });
+        }
+
+        function resetGame() {
+            gameState.fill('');
+            cells.forEach(cell => cell.textContent = '');
+            currentPlayer = 'X'; // Reset the player to X after a game ends
+        }
+
+        updateScoreboard();
+    </script>
+</body>
+</html>

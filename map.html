@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktivt Kort</title>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+  
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <!-- Leaflet Control Geocoder Plugin -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+  <!-- Inline CSS for map container -->
+  <style>
+    #mapid { height: 100vh; }
+    .leaflet-control-geocoder {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="mapid"></div>
+
+<script>
+  var map = L.map('mapid').setView([55.6761, 12.5683], 13); // Start map centered over Copenhagen
+  
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Initialize marker variable to store the current marker
+  var marker;
+
+  // Function to update marker location
+  function updateMarker(lat, lng) {
+    if (marker) {
+      map.removeLayer(marker);
+    }
+    marker = L.marker([lat, lng], {draggable: true}).addTo(map)
+      .bindPopup("Selected Location: <br> Latitude: " + lat.toFixed(4) + "<br> Longitude: " + lng.toFixed(4)).openPopup();
+  }
+
+  // Click event to add/update a marker
+  map.on('click', function(e) {
+    updateMarker(e.latlng.lat, e.latlng.lng);
+  });
+
+  // Add geocoding capabilities
+  var geocoder = L.Control.geocoder({
+    defaultMarkGeocode: false,
+    placeholder: "Search for places...",
+    errorMessage: "Nothing found."
+  }).on('markgeocode', function(e) {
+    var bbox = e.geocode.bbox;
+    var poly = L.polygon([
+      bbox.getSouthEast(),
+      bbox.getNorthEast(),
+      bbox.getNorthWest(),
+      bbox.getSouthWest()
+    ]).addTo(map);
+    map.fitBounds(poly.getBounds());
+    if (marker) {
+      map.removeLayer(marker); // Remove existing marker
+    }
+    updateMarker(e.geocode.center.lat, e.geocode.center.lng); // Set new marker based on search
+  }).addTo(map);
+
+</script>
+
+</body>
+</html>
