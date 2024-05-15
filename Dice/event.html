@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling Exercises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        h2 {
+            color: #0056b3;
+            margin-top: 20px;
+        }
+        button, input[type="text"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+        .color-box {
+            width: 100%;
+            height: 100px;
+            background-color: black;
+            transition: background-color 0.3s;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Click Handling</h2>
+        <button id="clickButton">Click me</button>
+        <img id="clickImage" src="https://via.placeholder.com/150" alt="Placeholder Image">
+        
+        <h2>Mouse Hover</h2>
+        <div id="square" class="color-box" style="background-color: blue;"></div>
+        <button id="hoverButton">Hover over me</button>
+        
+        <h2>Keypress Event</h2>
+        <input type="text" id="keypressInput" placeholder="Type something...">
+        <input type="text" id="enterField" placeholder="Press Enter">
+        
+        <h2>Scroll Event</h2>
+        <div style="height:1200px; margin-top: 20px;">Scroll down</div>
+        <button id="scrollButton" style="position:fixed; bottom:20px; left: 50%; transform: translateX(-50%);">Scroll button</button>
+        
+        <h2>Change Event</h2>
+        <select id="colorSelector">
+            <option value="white">Choose a color</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
+        <div>
+            <input type="checkbox" id="checkbox1"> Check me
+            <input type="checkbox" id="checkbox2"> Check me
+            <input type="checkbox" id="checkbox3"> Check me
+        </div>
+        <p id="checkboxCount">Checked count: 0</p>
+        
+        <h2>Time-based Event</h2>
+        <div id="timer">0</div>
+        <div id="colorChanger" class="color-box" style="background-color: black;"></div>
+        
+        <h2>Programmatic Assignment of Event Listeners</h2>
+        <div id="elementContainer"></div>
+        <button id="addElementButton">Add Element</button>
+    </div>
+    <script>
+        // Click Handling
+        document.getElementById('clickButton').onclick = function() {
+            this.textContent = 'Klikket!';
+        };
+
+        document.getElementById('clickImage').onclick = function() {
+            this.src = 'https://via.placeholder.com/150/ff0000';
+        };
+
+        // Mouse Hover
+        document.getElementById('square').onmouseover = function() {
+            this.style.backgroundColor = 'red';
+        };
+        document.getElementById('square').onmouseout = function() {
+            this.style.backgroundColor = 'blue';
+        };
+
+        document.getElementById('hoverButton').onmouseover = function() {
+            this.style.width = '200px';
+            this.style.height = '100px';
+        };
+        document.getElementById('hoverButton').onmouseout = function() {
+            this.style.width = '100px';
+            this.style.height = '50px';
+        };
+
+        // Keypress Event
+        document.getElementById('keypressInput').onkeypress = function(event) {
+            console.log('Tast trykket: ' + event.key);
+        };
+
+        document.getElementById('enterField').onkeypress = function(event) {
+            if (event.key === 'Enter') {
+                alert('Enter blev trykket!');
+            }
+        };
+
+        // Scroll Event
+        window.onscroll = function() {
+            let button = document.getElementById('scrollButton');
+            button.style.backgroundColor = window.scrollY > 100 ? 'green' : 'red';
+        };
+
+        // Change Event
+        document.getElementById('colorSelector').onchange = function() {
+            document.body.style.backgroundColor = this.value;
+        };
+
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(box => {
+            box.onchange = function() {
+                let checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                document.getElementById('checkboxCount').textContent = 'Antal markerede: ' + checkedCount;
+            };
+        });
+
+        // Time-based Event
+        setInterval(function() {
+            let timerDiv = document.getElementById('timer');
+            timerDiv.textContent = parseInt(timerDiv.textContent) + 1;
+        }, 1000);
+
+        setInterval(function() {
+            let changer = document.getElementById('colorChanger');
+            changer.style.backgroundColor = changer.style.backgroundColor === 'black' ? 'white' : 'black';
+        }, 2000);
+
+        // Programmatic Assignment of Event Listeners
+        document.getElementById('addElementButton').onclick = function() {
+            let newButton = document.createElement('button');
+            newButton.textContent = 'Dynamisk knap';
+            newButton.onclick = function() {
+                alert('Dynamisk knap klikket');
+            };
+            document.getElementById('elementContainer').appendChild(newButton);
+        };
+    </script>
+</body>
+</html>

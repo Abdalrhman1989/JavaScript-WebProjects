@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage Demo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Storage Management</h1>
+        <button id="storeData">Store Data</button>
+        <button id="retrieveData">Retrieve Data</button>
+        <button id="clearStorage">Clear Storage</button>
+    </div>
+
+    <script>
+        // Store data in localStorage
+        function gemDataLokalt() {
+            localStorage.setItem('brugerNavn', 'Jens Hansen');
+            console.log('Data stored in localStorage');
+        }
+
+        // Retrieve data from localStorage
+        function hentDataLokalt() {
+            const navn = localStorage.getItem('brugerNavn');
+            console.log('Retrieved from localStorage:', navn);
+        }
+
+        // Store data in sessionStorage
+        function gemDataSession() {
+            sessionStorage.setItem('sessionInfo', 'This is session data');
+            console.log('Data stored in sessionStorage');
+        }
+
+        // Retrieve data from sessionStorage
+        function hentDataSession() {
+            const info = sessionStorage.getItem('sessionInfo');
+            console.log('Retrieved from sessionStorage:', info);
+        }
+
+        // Clear storage
+        function rydOpbevaring() {
+            localStorage.removeItem('brugerNavn');
+            sessionStorage.removeItem('sessionInfo');
+            console.log('LocalStorage and sessionStorage cleared');
+        }
+
+        // Add event listeners to buttons
+        document.getElementById('storeData').addEventListener('click', gemDataLokalt);
+        document.getElementById('retrieveData').addEventListener('click', function() {
+            hentDataLokalt();
+            hentDataSession();
+        });
+        document.getElementById('clearStorage').addEventListener('click', rydOpbevaring);
+    </script>
+</body>
+</html>

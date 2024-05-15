@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Dice Roller</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .dice-container {
+            margin: 20px;
+        }
+
+        .dice {
+            width: 100px;
+            height: 100px;
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dice Roller Game</h1>
+        <div id="dice" class="dice-container">
+            <img src="red-die-1.png" id="dice1" alt="Dice 1" class="dice">
+            <img src="red-die-1.png" id="dice2" alt="Dice 2" class="dice">
+        </div>
+        <button class="button" onclick="rollDice()">Roll Dice</button>
+        <button class="button" onclick="toggleDiceColor()">Change Dice Color</button>
+    </div>
+
+    <script>
+        function rollDice() {
+            updateDiceImage('dice1');
+            updateDiceImage('dice2');
+        }
+
+        function updateDiceImage(diceId) {
+            let dice = document.getElementById(diceId);
+            let diceColor = dice.src.includes('red') ? 'red' : 'white';
+            let randomNumber = Math.floor(Math.random() * 6) + 1;
+            dice.src = `${diceColor}-die-${randomNumber}.png`;
+        }
+
+        function toggleDiceColor() {
+            toggleDice('dice1');
+            toggleDice('dice2');
+            updateButtonLabel();
+        }
+
+        function toggleDice(diceId) {
+            let dice = document.getElementById(diceId);
+            let currentColor = dice.src.includes('red') ? 'white' : 'red';
+            dice.src = `${currentColor}-die-1.png`;
+        }
+
+        function updateButtonLabel() {
+            let button = document.getElementById('changeColorButton');
+            let currentColor = document.getElementById('dice1').src.includes('red') ? 'white' : 'red';
+            button.textContent = `Change to ${currentColor.charAt(0).toUpperCase() + currentColor.slice(1)} Dice`;
+        }
+    </script>
+</body>
+</html>
